@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
   const [users, setUsers] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ function App() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch(`${API_BASE}/users`);
       const data = await res.json();
       setUsers(data);
     } catch {
@@ -34,7 +35,7 @@ function App() {
     setError("");
     setAdding(true);
     try {
-      await fetch("http://localhost:5000/users", {
+      await fetch(`${API_BASE}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email }),
@@ -53,7 +54,7 @@ function App() {
 
   const deleteUser = async (id) => {
     try {
-      await fetch(`http://localhost:5000/users/${id}`, { method: "DELETE" });
+      await fetch(`${API_BASE}/users/${id}`, { method: "DELETE" });
       fetchUsers();
     } catch {
       setError("Failed to delete user.");
