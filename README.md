@@ -18,6 +18,23 @@ npm run dev
 
 Open the app at `http://localhost:5174/`.
 
+## GitHub Pages
+
+This project uses `vite` base path support for GitHub Pages.
+
+To publish:
+
+```bash
+npm run build:docs
+```
+
+Then set the repository Pages source to:
+- Branch: `main`
+- Folder: `/docs`
+
+After that, the site should work at:
+`https://AK1732.github.io/my-frontend/`
+
 ## API
 
 This frontend expects the API to run at `http://localhost:5000/users`.
